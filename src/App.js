@@ -10,6 +10,7 @@ import New from './pages/Dashboard/CreateRecipe/New';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Main from './pages/Dashboard/Main';
+import ViewRecipe from './pages/ViewRecipe';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard/write/new" element={<New />} />
         <Route path="/dashboard" element={<Main />} />
+        <Route path="/recipe/:id" element={<ViewRecipe />} />
 
         <Route path='*' element={<NotFound />} />
 

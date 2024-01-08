@@ -12,7 +12,9 @@ function Categories() {
                     transition-all duration-400 cursor-pointer
                     overflow-hidden' key={index}>
                         <Label className="text-md font-semibold">{foodtype.type}</Label>
-                        <img src={foodtype.image} className='w-20 h-20  mx-auto  mt-2 hover:scale-110  transition-all duration-500 cursor-pointer' loading='lazy' alt={foodtype.type +' image'} />
+                        <img src={foodtype.image} className='w-20 h-20  mx-auto  mt-2 hover:scale-110  transition-all duration-500 cursor-pointer' 
+                        loading='lazy'
+                         alt={foodtype.type +' image'} />
                     </div>
                 ))}
             </div>

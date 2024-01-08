@@ -51,7 +51,10 @@ function Register() {
     }
   }
   return (
-    <div>
+    <div className='mt-10'>
+  <h1 className="scroll-m-20 text-4xl mb-10 text-center font-extrabold tracking-tight lg:text-4xl text-primary">
+        Create a new Account
+      </h1>
       <RegisterForm
         name={name} setName={setName}
         email={email} setEmail={setEmail}

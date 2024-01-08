@@ -1,0 +1,44 @@
+
+
+  /* Define a custom cookie image for the list items */
+.recipe ul {
+    list-style-type: none; /* Remove default bullet points */
+    margin-left: 20px; /* Adjust the margin to position the cookie image */
+    padding-left: 0; /* Remove default padding for unordered lists */
+  }
+  
+.recipe li {
+    margin-bottom: 10px; /* Adjust the spacing between list items */
+    line-height: 1.5; /* Adjust the line height for better readability */
+    position: relative;
+    margin-left: 1rem;
+  }
+  
+  /* Style the custom cookie image */
+.recipe  li::before {
+    content: ''; /* Empty content */
+    background-image:url('../Assets/SVG/cookie-svgrepo-com.svg'); /* Replace with your cookie image */
+    background-size: cover; /* Ensure the image covers the content area */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    display: inline-block;
+    width: 20px; /* Adjust the width of the cookie image */
+    height: 20px; /* Adjust the height of the cookie image */
+    margin-right: 10px; /* Adjust the spacing between the image and text */
+    position: absolute;
+    left: -30px; /* Adjust the distance from the text */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+
+  }
+  
+.recipe img{
+    width: 40%;
+    margin: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+.recipe img:hover{
+   transform: scale(105%);
+   transition-duration: 1s;
+   
+}

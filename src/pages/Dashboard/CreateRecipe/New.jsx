@@ -77,17 +77,14 @@ function New(props) {
                     }}
                     tools={{
                         header: Header,
-                        list: List,
                         image: {
                             class: ImageTool,
                             inlineToolbar: true,
-
                             config: {
                                 endpoints: {
-                                    byFile: 'http://localhost:8080/uploadImage/uploadFile', // imgBB endpoint for uploading images by file
-                                    byUrl: 'http://localhost:8080/uploadImage/uploadFile', // Your endpoint for uploading images by URL
+                                    byFile: 'http://localhost:8080/uploadImage/uploadFile',
+                                    byUrl: 'http://localhost:8080/uploadImage/uploadFile',
                                 }
-
                             },
                         },
                         table: {
@@ -103,10 +100,10 @@ function New(props) {
                             shortcut: 'CMD+SHIFT+M',
                         },
                         list: {
-                            class: nestedListUmd,
+                            class: List,
                             inlineToolbar: true,
                             config: {
-                                defaultStyle: 'unordered',
+                                defaultStyle: 'unordered', // or 'ordered' for ordered lists
                             },
                         },
                     }}
@@ -134,13 +131,7 @@ function New(props) {
                                     "level": 3,
                                 },
                             },
-                            {
-                                "type": "list",
-                                "data": {
-                                    "style": "unordered",
-                                    "items": ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
-                                },
-                            },
+                           
                             {
                                 "type": "header",
                                 "data": {

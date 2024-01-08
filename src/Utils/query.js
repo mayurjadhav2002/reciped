@@ -23,7 +23,8 @@ export const RegisterQuery = async (props) => {
 export const LoginQuery = async (props) => {
     try {
         const result = await axios.post('/auth/login', props);
-        if(result){
+        console.log("Resuklt", result)
+        if (result) {
             return result
         }
     } catch (error) {
@@ -33,16 +34,80 @@ export const LoginQuery = async (props) => {
 
 }
 
-export const getAllRecipesOfUser = async(props) =>{
+export const getAllRecipesOfUser = async (props) => {
     try {
 
-        const res = await axios.post('/recipe/getallrecipe', {userId: props})
+        const res = await axios.post('/recipe/getRecentlyEditedrecipe', { userId: props })
         if (res.status === 200) {
             console.log(res)
             return res.data;
         }
     } catch (error) {
-        console.log("Error while fetching the documents", error)
+        console.log("Error while fetching the recipe", error)
+        throw new Error()
+    }
+}
+
+export const getAllRecipe = async (props) => {
+    try {
+
+        const res = await axios.get('/recipe/getallrecipe')
+        if (res.status === 200) {
+            return res.data;
+        }
+    } catch (error) {
+        console.log("Error while fetching the recipe", error)
+        throw new Error()
+    }
+}
+
+export const getAsingleRecipe = async(props) => {
+    try {
+        const res  = await axios.post('/recipe/getsingleRecipe', {id: props})
+        if (res.status === 200) {
+            return res.data;
+        }
+    } catch (error) {
+        console.log("Error while fetching the recipe", error)
+        throw new Error()
+    }
+}
+
+export const getRecommnededRecipes = async() => {
+    try {
+        const res  = await axios.get('/recipe/getrecommendedRecipes')
+        if (res.status === 200) {
+            return res.data;
+        }
+        
+    } catch (error) {
+        console.log("Error while fetching the recipe", error)
+        throw new Error()
+    }
+}
+
+export const SearchQuery = async(query) => {
+    try {
+        const res  = await axios.post('/recipe/searchRecipe?query='+query)
+        if (res.status === 200) {
+            return res.data;
+        }
+        
+    } catch (error) {
+        console.log("Error while fetching the recipe", error)
+        throw new Error()
+    }
+}
+
+export const DeleteRecipe = async(id) => {
+    try {
+        const res  = await axios.delete('/recipe/deleteRecipe/'+id)
+        if (res.status === 200) {
+            console.log(res)
+            return res;
+        }
+    } catch (error) {
+        console.log("Error while deleting the recipe", error)
         throw new Error()
     }
 }

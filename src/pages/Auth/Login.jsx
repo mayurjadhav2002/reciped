@@ -33,26 +33,27 @@ function Login() {
 
     const handleSubmit = async () => {
         try {
-                const res = await LoginQuery({ email: email, password: password })
-                if(res.data.success === false && res.data.code === "unverified"){
-                    toast.error("Email not Verified! please check your inbox to verify mail.")
-                }
-                if(res.data.success === false && res.data.code === "oauth"){
-                    toast.error("Looks like you created account using Google. Please Login with Google.")
-                }
-                if(res.data.success === false && res.data.code === "invalid"){
-                    toast.error("Login Failed! Please Check your Email and password again.")
-                }
-                if(res.data.success === false && res.data.code === "error"){
-                    toast.error("Sorry, Error from our Side ! Please hang in while we solve this issues. ")
-                }
-                
-                if(res.data.success === true){
-                    await setUser(res.data.data)
-                    await handleAccessToken({ access_token: res.data.data.access_token, user: res.data.data });
-                    await handleLoggedin(true)
-                    toast.success("Logged into your Account")
-                }
+            console.log("login")
+            const res = await LoginQuery({ email: email, password: password })
+            if (res.data.success === false && res.data.code === "unverified") {
+                toast.error("Email not Verified! please check your inbox to verify mail.")
+            }
+            if (res.data.success === false && res.data.code === "oauth") {
+                toast.error("Looks like you created account using Google. Please Login with Google.")
+            }
+            if (res.data.success === false && res.data.code === "invalid") {
+                toast.error("Login Failed! Please Check your Email and password again.")
+            }
+            if (res.data.success === false && res.data.code === "error") {
+                toast.error("Sorry, Error from our Side ! Please hang in while we solve this issues. ")
+            }
+
+            if (res.data.success === true) {
+                await setUser(res.data.data)
+                await handleAccessToken({ access_token: res.data.data.access_token, user: res.data.data });
+                await handleLoggedin(true)
+                toast.success("Logged into your Account")
+            }
 
         } catch (error) {
             toast.error("Sorry! this time error from our side. Fixing the Issue.", error)
@@ -61,6 +62,7 @@ function Login() {
 
     return (
         <div className='relative min-h-[calc(100vh-12vh)] overflow-hidden'>
+
             {/* Randomly positioned images */}
             <div className=' w-full h-full -z-10'>
 
@@ -74,7 +76,10 @@ function Login() {
 
             </div>
             {/* Centered LoginForm */}
-            <div className="flex items-center justify-center  py-8 lg:py-20 z-20">
+            <div className="flex flex-col items-center justify-center  py-8 lg:py-20 z-20">
+                <h1 className="scroll-m-20 text-4xl mb-10 text-center font-extrabold tracking-tight lg:text-4xl text-primary z-[9999]">
+                    Login into your Account
+                </h1>
                 <LoginForm setEmail={setEmail} email={email} password={password} setPassword={setPassword} handleSubmit={handleSubmit} />
             </div>
         </div>

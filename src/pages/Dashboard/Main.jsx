@@ -10,7 +10,7 @@ function Main() {
     const [AllRecipes, setAllRecipes] = useState([])
     useEffect(() => {
         if (user?._id) {
-            getAllRecipesOfUser(user?._id).then((res) => setAllRecipes(res.data))
+            getAllRecipesOfUser(user._id).then((res) => setAllRecipes(res.data)).catch(e => console.log(e))
         }
     }, [user?._id])
     return (
