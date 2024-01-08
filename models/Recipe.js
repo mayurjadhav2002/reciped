@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const Recipe = new mongoose.Schema({
-    RecipeId: {
-        type: String,
-        require: true
-    }
-    ,
     created_by: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -29,11 +24,15 @@ const Recipe = new mongoose.Schema({
     ],
     thumbnail:{
         type:String,
-        default: ''
+        default: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     deleted: {
         type: Boolean,
         default: false
+    },
+    views:{
+        type:Number,
+        default: 1
     }
 
 }, { timestamps: true });
