@@ -18,5 +18,8 @@ Connect();
 app.use('/auth', userRoute)
 app.use('/recipe', recipe_route)
 app.use('/uploadImage', imageRoute)
+app.get('/', (req,res)=>{
+    res.send("hello World")
+})
 
 app.listen(port, () => console.log(`Connected to port: ${port}`));
