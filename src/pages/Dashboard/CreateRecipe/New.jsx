@@ -30,7 +30,7 @@ function New(props) {
                 userid: user._id,
 
             };
-            const response = await axios.post('http://localhost:8080/recipe/create', requestData);
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/recipe/create`, requestData);
 
             if(response.data.success){
                 toast.success("Recipe Published Enjoy");
