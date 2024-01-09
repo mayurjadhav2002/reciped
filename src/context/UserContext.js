@@ -31,7 +31,7 @@ export function UserContextProvider({ children }) {
 
     useEffect(() => {
         handleLoggedin();
-        // HandleGetAPIStastus();
+        HandleGetAPIStatus();
         // Check login status when component mounts
     }, []);
 

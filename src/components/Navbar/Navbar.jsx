@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Drawer, DrawerTrigger } from '../ui/drawer';
-import MobileMenu from './MobileMenu';
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from '../ui/menubar';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
@@ -8,8 +7,22 @@ import { ThemeToggler } from '../Theme/ThemeToggler';
 import { useUserContext } from '../../context/UserContext';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu';
-import { RxDividerVertical } from "react-icons/rx";
-import { FaGithub } from "react-icons/fa";
+
+const APIstatusAnnouncBar = () => {
+    return (
+        <>
+            <div className="bg-primary px-4 py-3 text-white">
+                <p className="text-center text-sm font-medium">
+                    Checking Status of API...
+                    <Link to="https://recipe-website-backend-s4xz.onrender.com/recipe/getallrecipe" className="inline-block
+                    text-semibold
+                    underline ml-4 text-dark">Demo API deployed on Render</Link>
+                </p>
+            </div>
+
+        </>
+    )
+}
 function Navbar() {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const { loggedin, user, handleLogout, APIAwake } = useUserContext();
@@ -20,12 +33,13 @@ function Navbar() {
     return (
         <>
             <Drawer>
+                {!APIAwake && <APIstatusAnnouncBar />}
 
                 <nav className="relative p-4 flex justify-between items-center  bg-orange-50 z-20">
                     <Link to={"/"} className="text-3xl font-bold leading-none py-auto w-full lg:w-auto">
-                    <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl first-letter:text-primary first-letter:text-4xl">
-        Reciped
-      </h1>
+                        <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl first-letter:text-primary first-letter:text-4xl">
+                            Reciped
+                        </h1>
 
                     </Link>
 
