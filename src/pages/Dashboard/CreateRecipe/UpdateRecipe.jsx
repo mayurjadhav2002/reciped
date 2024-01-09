@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@stfy/react-editor.js';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
@@ -9,46 +9,57 @@ import axios from 'axios'; // Import axios
 import { Button } from '../../../components/ui/button';
 import { useUserContext } from '../../../context/UserContext';
 import { toast } from 'react-toastify';
+import { getAsingleRecipe } from '../../../Utils/query';
+import { useParams } from 'react-router-dom';
 
-function New(props) {
+function Update(props) {
     const [title, setTitle] = useState('');
     const [recipe, setRecipe] = useState()
     const [loading, setLoading] = useState('')
     const { user } = useUserContext();
+    let { id } = useParams();
+
+
+    useEffect(() => {
+        getAsingleRecipe(id).then((res) => {
+            setTitle(res.data.title);
+            setRecipe(res.data.recipe);
+        });
+    }, [id]);
 
     const handleTitleChange = (event) => {
         if (event.target.value.length <= 85) {
             setTitle(event.target.value);
         }
     };
+// console.log(JSON.parse(recipe))
+console.log(recipe)
     const handleSubmit = async () => {
         try {
             setLoading(true);
             const requestData = {
                 title: title,
-                recipe: [recipe],
+                recipe: [JSON.parse(recipe)],
                 userid: user._id,
-
             };
-            const response = await axios.post('http://localhost:8080/recipe/create', requestData);
 
-            if(response.data.success){
-                toast.success("Recipe Published Enjoy");
-                
-                console.log('Recipe published successfully:', response.data);
-            }else{
-                toast.error("Failed to published, please try again!")
-                console.log("Failed to publish")
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/recipe/update/${id}`, requestData);
+
+            if (response.data.success) {
+                toast.success('Recipe Updated Successfully!');
+                console.log('Recipe updated successfully:', response.data);
+            } else {
+                toast.error('Failed to update recipe, please try again!');
+                console.log('Failed to update recipe');
             }
-            // Handle the response from the backend as needed
 
             setLoading(false);
-
         } catch (error) {
-            console.error('Error publishing recipe:', error);
+            console.error('Error updating recipe:', error);
             setLoading(false);
         }
-    }
+    };
+
 
 
     return (
@@ -105,46 +116,7 @@ function New(props) {
                         },
                     }}
                     onReady={() => toast.success("Write a Delicious Recipe!")}
-                    data={{
-                        "time": 1569611146631,
-                        "blocks": [
-                            {
-                                "type": "header",
-                                "data": {
-                                    "text": "Introduction",
-                                    "level": 3, // You can adjust the level as needed
-                                },
-                            },
-                            {
-                                "type": "paragraph",
-                                "data": {
-                                    "text": "Write your introduction here...",
-                                },
-                            },
-                            {
-                                "type": "header",
-                                "data": {
-                                    "text": "Ingredients",
-                                    "level": 3,
-                                },
-                            },
-                           
-                            {
-                                "type": "header",
-                                "data": {
-                                    "text": "Steps",
-                                    "level": 3,
-                                },
-                            },
-                            {
-                                "type": "paragraph",
-                                "data": {
-                                    "text": "Write your steps here...",
-                                },
-                            },
-                            // Add more blocks as needed for other sections
-                        ],
-                    }}
+                    data={recipe?.blocks}
                 />
                 <div id="editor" className='z-10  h-auto' />
             </div>
@@ -157,4 +129,4 @@ function New(props) {
     );
 }
 
-export default New;
+export default Update;

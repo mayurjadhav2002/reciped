@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Main from './pages/Dashboard/Main';
 import ViewRecipe from './pages/ViewRecipe';
+import Update from './pages/Dashboard/CreateRecipe/UpdateRecipe';
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard/write/new" element={<New />} />
+        <Route path="/dashboard/write/:id" element={<Update />} />
+
         <Route path="/dashboard" element={<Main />} />
         <Route path="/recipe/:id" element={<ViewRecipe />} />
 

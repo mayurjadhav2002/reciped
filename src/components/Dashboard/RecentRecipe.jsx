@@ -3,6 +3,7 @@ import { IoStatsChartOutline } from 'react-icons/io5';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import { DeleteRecipe } from '../../Utils/query';
+import { Link } from 'react-router-dom';
 
 function RecentRecipe(props) {
     const handleDelete = (id) => {
@@ -28,7 +29,7 @@ function RecentRecipe(props) {
             <div className='grid lg:grid-cols-4 md:grid-cols-1  gap-8' >
                 {props.AllRecipes.length > 0 ? (
                     props.AllRecipes.map((recipe, index) => (
-                        <div className='flex flex-col gap-2 bg-orange-50 rounded-lg' key={index}>
+                        <div to={`/dashboard/write/${recipe._id}`} className='flex flex-col gap-2 bg-orange-50 rounded-lg' key={index}>
                             <img
                                 src={recipe.thumbnail}
                                 className='h-40 object-center object-cover rounded-t-lg'
