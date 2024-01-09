@@ -82,8 +82,8 @@ function New(props) {
                             inlineToolbar: true,
                             config: {
                                 endpoints: {
-                                    byFile: 'http://localhost:8080/uploadImage/uploadFile',
-                                    byUrl: 'http://localhost:8080/uploadImage/uploadFile',
+                                    byFile: `${process.env.REACT_APP_BACKEND_URL}/uploadImage/uploadFile`,
+                                    byUrl: `${process.env.REACT_APP_BACKEND_URL}/uploadImage/uploadFile`
                                 }
                             },
                         },
